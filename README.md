@@ -20,7 +20,7 @@ This leads to delays, miscommunication, and reduced trust between citizens and g
 
 ## 💡 Solution
 GovAlert provides a digital platform where:
-- Citizens can submit reports بسهولة  
+- Citizens can submit reports easily  
 - Reports are automatically routed to relevant departments  
 - Users can track the status of their complaints in real-time  
 - Notifications keep users informed about progress  
@@ -45,14 +45,6 @@ GovAlert provides a digital platform where:
 
 ---
 
-## 🛠️ Tech Stack
-(*Fill this if you know, or I can help later*)
-- Frontend:  
-- Backend:  
-- Database:  
-- Tools: UML, ERD, etc.  
-
----
 
 ## 📊 System Design
 Includes:
