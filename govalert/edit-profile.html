@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Profile - Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --card-bg: white;
+      --input-border: #ccc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      color: var(--text-color);
+      direction: ltr;
+      text-align: left;
+      transition: direction 0.3s ease;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1.page-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+      color: var(--text-color);
+    }
+
+    form#editForm {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    form#editForm label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    form#editForm input[type="text"],
+    form#editForm input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-color);
+    }
+
+    form#editForm input::placeholder {
+      color: #999;
+    }
+
+    button.save-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.save-btn:hover {
+      background-color: #267bc9;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] h1.page-title {
+      text-align: right;
+    }
+
+    [dir="rtl"] form#editForm input[type="text"],
+    [dir="rtl"] form#editForm input[type="email"] {
+      text-align: right;
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <div class="container">
+    <h1 class="page-title" id="pageTitle">Edit Profile</h1>
+
+    <form id="editForm">
+      <label for="name" id="labelName">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+      <label for="email" id="labelEmail">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+
+      <label for="phone" id="labelPhone">Phone</label>
+      <input type="text" id="phone" name="phone" placeholder="e.g. +962 733 333 333" required />
+
+      <button type="submit" class="save-btn" id="saveBtn">Save Changes</button>
+    </form>
+  </div>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function applyLang() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("pageTitle").textContent = isArabic ? "تعديل الملف الشخصي" : "Edit Profile";
+      document.getElementById("labelName").textContent = isArabic ? "الاسم" : "Name";
+      document.getElementById("labelEmail").textContent = isArabic ? "البريد الإلكتروني" : "Email";
+      document.getElementById("labelPhone").textContent = isArabic ? "رقم الهاتف" : "Phone";
+      document.getElementById("saveBtn").textContent = isArabic ? "حفظ التغييرات" : "Save Changes";
+
+      // Placeholders
+      document.getElementById("name").placeholder = isArabic ? "أدخل اسمك الكامل" : "Enter your full name";
+      document.getElementById("email").placeholder = isArabic ? "أدخل البريد الإلكتروني" : "Enter your email address";
+      document.getElementById("phone").placeholder = isArabic ? "+962 733 333 333 مثال:" : "e.g. +962 733 333 333";
+    }
+
+    // Apply language settings on page load
+    applyLang();
+  </script>
+</body>
+</html>

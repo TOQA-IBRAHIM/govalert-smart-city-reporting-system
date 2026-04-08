@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GovAlert - How to Use</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --footer-bg: #ffffff;
+      --footer-link-color: #318CE7;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 15px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    button.language-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    h1, h2 {
+      color: var(--text-color);
+    }
+
+    pre {
+      background: #eef2f3;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-color);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+    }
+
+    footer a {
+      color: var(--footer-link-color);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] .logo-container {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .logo-container img {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    [dir="rtl"] header h1 {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+
+    [dir="rtl"] a.back-link {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Gov Alert Logo">
+      <h1 id="title">Gov Alert</h1>
+    </div>
+    <button class="language-toggle" onclick="toggleLang()">🌐</button>
+  </header>
+
+  <main>
+    <h1 id="guideTitle">How to Use GovAlert</h1>
+
+    <pre id="guideContent">
+📌 GovAlert
+
+GovAlert is a web and mobile application designed to improve communication between citizens and government departments by enabling users to report public service issues such as potholes, broken streetlights, sanitation problems, and more.
+
+The app allows users to:
+
+- Submit reports with descriptions, photos, GPS location, and urgency tags.
+- Track complaint status in real-time.
+- Receive notifications about updates.
+- Provide feedback after issue resolution.
+
+It supports multiple languages (Arabic & English) and aims to increase transparency, responsiveness, and citizen engagement in municipal services.
+
+📋 1. User Guide – For Citizens
+
+🔹 Step 1: Access the Website
+Open your browser and go to the GovAlert website URL.
+You will land on the homepage, where you can:
+View the project overview
+Click “Sign Up” or “Log In”
+
+🔹 Step 2: Register an Account
+To submit reports, users must create an account:
+
+Click “Sign Up”
+Fill in the required fields:
+Full name
+Email address
+Password (must meet policy requirements)
+Phone number
+Preferred language (Arabic or English)
+Click “Register”
+
+A confirmation email will be sent. Click the verification link to activate your account.
+If the email already exists, the system will prompt you to try again or recover your password.
+
+🔹 Step 3: Log In
+Once registered and verified:
+
+Go to the login page
+Enter your email and password
+Click “Login”
+
+If login fails due to incorrect credentials, the system shows an error message and allows retry.
+After a period of inactivity, the system logs you out automatically.
+
+🔹 Step 4: Submit a Report
+You can now report public service issues:
+
+Click “Report Issue”
+Fill in the form:
+Title and description of the issue
+Category (e.g., Road, Water, Electricity)
+Optional: Upload one or more photos
+Location: Automatically captured via GPS (if permission is granted), or manually entered
+Urgency level (Low, Medium, High)
+Click “Submit”
+
+The system timestamps and stores your report in the database.
+
+🔹 Step 5: Track Your Reports
+After submitting a report:
+
+Go to “My Reports”
+View all submitted reports:
+Report title
+Date submitted
+Current status (Pending, In Progress, Resolved)
+Assigned department
+
+Click on any report to view full details and comments from the government side.
+
+🔹 Step 6: Receive Notifications
+The system sends real-time updates via push notifications or in-app messages:
+
+When the status changes (e.g., from "Pending" to "In Progress")
+When a government employee adds a comment or requests clarification
+During scheduled maintenance or downtime
+
+If push notifications fail temporarily, updated status will appear when you open the app next.
+
+🔹 Step 7: Provide Feedback
+After a report is marked “Resolved”, you’ll be prompted to:
+
+Rate the service (1 to 5 stars)
+Add a short comment about your experience
+
+This feedback helps improve the system and government responsiveness.
+
+🔹 Step 8: Log Out
+At any time, click “Logout” to securely end your session.
+
+🛠️ 2. Admin Guide – For Government Employees
+
+🔹 Step 1: Access the Admin Dashboard
+Go to the admin login page
+Enter your email and password
+Select your department
+Click “Login”
+
+🔹 Step 2: View Assigned Reports
+On the dashboard:
+
+All reports assigned to your department are listed
+Sort by:
+Date
+Urgency
+Type
+Status
+
+🔹 Step 3: Manage Reports
+For each report:
+
+Click to view full details
+Update the status (Pending → In Progress → Resolved)
+Add comments or request clarification from the user
+Assign the report to another department if needed
+
+🔹 Step 4: Export Data
+Administrators can export reports and user feedback:
+
+Click “Export”
+Choose format: CSV or PDF
+Download for record-keeping or internal review
+
+🔹 Step 5: Log Out
+Click “Logout” to securely end your admin session.
+    </pre>
+
+    <a href="feedback.html" class="back-link" id="backLink">← Back to Feedback Page</a>
+  </main>
+
+  <footer>
+    <p>
+      <a href="summary.html" target="_blank">How to Use</a> |
+      &copy; 2025 Gov Alert. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function toggleLang() {
+      isArabic = !isArabic;
+      localStorage.setItem('isArabic', isArabic);
+      applyLanguage();
+    }
+
+    function applyLanguage() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("title").textContent = isArabic ? "تنبيه الحكومة" : "Gov Alert";
+      document.getElementById("guideTitle").textContent = isArabic ? "كيف تستخدم تطبيق GovAlert؟" : "How to Use GovAlert";
+
+      document.getElementById("guideContent").textContent = isArabic ? `
+📌 تنبيه الحكومة
+
+GovAlert هو تطبيق ويب وهواتف ذكية مصمم لتحسين التواصل بين المواطنين وأقسام الحكومة من خلال تمكين المستخدمين من الإبلاغ عن المشكلات الخدمية مثل الحفر في الطرق، وأضواء الشارع المكسورة، ومشاكل النظافة، وغيرها.
+
+التطبيق يسمح للمستخدمين بـ:
+
+- إرسال التقارير مع الوصف والصور والموقع الجغرافي وعلامات الأولوية.
+- تتبع حالة الشكاوى في الوقت الفعلي.
+- استقبال إشعارات حول التحديثات.
+- تقديم تعليقات بعد حل المشكلة.
+
+وهو يدعم عدة لغات (العربية والإنجليزية) ويهدف إلى زيادة الشفافية والاستجابة ومشاركة المواطنين في الخدمات البلدية.
+
+📋 1. دليل المستخدم - للمواطنين
+
+🔹 الخطوة 1: الدخول إلى الموقع
+افتح المتصفح وتوجه إلى رابط موقع GovAlert.
+ستصل إلى الصفحة الرئيسية، حيث يمكنك:
+عرض نبذة عن المشروع
+النقر على "إنشاء حساب" أو "تسجيل الدخول"
+
+🔹 الخطوة 2: إنشاء حساب
+لإرسال التقارير، يجب على المستخدم إنشاء حساب:
+
+انقر على "إنشاء حساب"
+املأ الحقول المطلوبة:
+الاسم الكامل
+عنوان البريد الإلكتروني
+كلمة المرور (يجب أن تتوافق مع سياسة الأمان)
+رقم الهاتف
+اللغة المفضلة (العربية أو الإنجليزية)
+انقر على "تسجيل"
+
+سيتم إرسال رسالة تأكيد عبر البريد الإلكتروني. انقر على الرابط للتفعيل.
+إذا كان البريد موجودًا بالفعل، سيُطلب منك المحاولة مرة أخرى أو استرجاع كلمة المرور.
+
+🔹 الخطوة 3: تسجيل الدخول
+بعد التسجيل والتحقق:
+
+انتقل إلى صفحة تسجيل الدخول
+أدخل البريد وكلمة المرور
+انقر على "دخول"
+
+في حال فشل تسجيل الدخول بسبب بيانات غير صحيحة، ستظهر رسالة خطأ وستتاح لك فرصة إعادة المحاولة.
+بعد فترة من عدم النشاط، سيتم تسجيل خروجك تلقائيًا.
+
+🔹 الخطوة 4: إرسال تقرير
+يمكنك الآن الإبلاغ عن مشكلة خدمية:
+
+انقر على "إبلاغ عن مشكلة"
+املأ النموذج:
+العنوان والوصف
+الفئة (مثل الطريق، المياه، الكهرباء)
+اختياري: رفع صور
+الموقع: يتم التقاطه تلقائيًا عبر GPS (إذا سمح)، أو إدخاله يدويًا
+مستوى الأولوية (منخفض، متوسط، عالي)
+انقر على "إرسال"
+
+سيقوم النظام بوضع علامة زمنية وتخزين التقرير في قاعدة البيانات.
+
+🔹 الخطوة 5: تتبع التقارير
+بعد إرسال التقرير:
+
+انتقل إلى "تقاريري"
+اعرض جميع التقارير التي أرسلتها:
+عنوان التقرير
+التاريخ
+الحالة الحالية (قيد الانتظار، جارٍ العمل، تم الحل)
+القسم المسؤول
+
+انقر على أي تقرير لعرض التفاصيل الكاملة والتعليقات من جانب الحكومة.
+
+🔹 الخطوة 6: استلام الإشعارات
+يرسل النظام تحديثات في الوقت الفعلي عبر إشعارات دفع أو رسائل داخل التطبيق:
+
+عند تغيير الحالة (مثلاً من "قيد الانتظار" إلى "جارٍ العمل")
+عند إضافة موظف تعليق أو طلب توضيح
+خلال الصيانة المجدولة أو التوقف
+
+إذا فشلت إشعارات الدفع مؤقتًا، ستظهر الحالة المحدثة عند فتح التطبيق في المرة القادمة.
+
+🔹 الخطوة 7: تقديم تعليقات
+بعد وضع علامة "تم الحل" على التقرير، ستتلقى طلبًا لـ:
+
+تقييم الخدمة (من 1 إلى 5 نجوم)
+إضافة تعليق قصير حول تجربتك
+
+هذه التعليقات تساعد على تحسين النظام واستجابة الحكومة.
+
+🔹 الخطوة 8: تسجيل الخروج
+في أي وقت، انقر على "تسجيل الخروج" لإنهاء جلستك بشكل آمن.
+
+🛠️ 2. دليل المشرف - للموظفين الحكوميين
+
+🔹 الخطوة 1: الوصول إلى لوحة الإدارة
+انتقل إلى صفحة تسجيل دخول المشرف
+أدخل البريد الإلكتروني وكلمة المرور
+اختر القسم الخاص بك
+انقر على "دخول"
+
+🔹 الخطوة 2: عرض التقارير المعينة
+على اللوحة الرئيسية:
+
+ستُعرض جميع التقارير المعينة لقسمك
+يمكنك ترتيبها حسب:
+التاريخ
+الأولوية
+النوع
+الحالة
+
+🔹 الخطوة 3: إدارة التقارير
+لكل تقرير:
+
+انقر لعرض التفاصيل
+قم بتحديث الحالة (قيد الانتظار → جارٍ العمل → تم الحل)
+أضف تعليقات أو اطلب توضيحًا من المستخدم
+عيّن التقرير إلى قسم آخر إذا لزم الأمر
+
+🔹 الخطوة 4: تصدير البيانات
+يمكن للمديرين تصدير التقارير والتعليقات:
+
+انقر على "تصدير"
+اختر التنسيق: CSV أو PDF
+قم بالتحميل لأغراض الأرشفة أو المراجعة الداخلية
+
+🔹 الخطوة 5: تسجيل الخروج
+انقر على "تسجيل الخروج" لإنهاء جلسة المشرف بشكل آمن.
+      ` : `
+📌 GovAlert
+
+GovAlert is a web and mobile application designed to improve communication between citizens and government departments by enabling users to report public service issues such as potholes, broken streetlights, sanitation problems, and more.
+
+The app allows users to:
+
+- Submit reports with descriptions, photos, GPS location, and urgency tags.
+- Track complaint status in real-time.
+- Receive notifications about updates.
+- Provide feedback after issue resolution.
+
+It supports multiple languages (Arabic & English) and aims to increase transparency, responsiveness, and citizen engagement in municipal services.
+
+📋 1. User Guide – For Citizens
+
+🔹 Step 1: Access the Website
+Open your browser and go to the GovAlert website URL.
+You will land on the homepage, where you can:
+View the project overview
+Click “Sign Up” or “Log In”
+
+🔹 Step 2: Register an Account
+To submit reports, users must create an account:
+
+Click “Sign Up”
+Fill in the required fields:
+Full name
+Email address
+Password (must meet policy requirements)
+Phone number
+Preferred language (Arabic or English)
+Click “Register”
+
+A confirmation email will be sent. Click the verification link to activate your account.
+If the email already exists, the system will prompt you to try again or recover your password.
+
+🔹 Step 3: Log In
+Once registered and verified:
+
+Go to the login page
+Enter your email and password
+Click “Login”
+
+If login fails due to incorrect credentials, the system shows an error message and allows retry.
+After a period of inactivity, the system logs you out automatically.
+
+🔹 Step 4: Submit a Report
+You can now report public service issues:
+
+Click “Report Issue”
+Fill in the form:
+Title and description of the issue
+Category (e.g., Road, Water, Electricity)
+Optional: Upload one or more photos
+Location: Automatically captured via GPS (if permission is granted), or manually entered
+Urgency level (Low, Medium, High)
+Click “Submit”
+
+The system timestamps and stores your report in the database.
+
+🔹 Step 5: Track Your Reports
+After submitting a report:
+
+Go to “My Reports”
+View all submitted reports:
+Report title
+Date submitted
+Current status (Pending, In Progress, Resolved)
+Assigned department
+
+Click on any report to view full details and comments from the government side.
+
+🔹 Step 6: Receive Notifications
+The system sends real-time updates via push notifications or in-app messages:
+
+When the status changes (e.g., from "Pending" to "In Progress")
+When a government employee adds a comment or requests clarification
+During scheduled maintenance or downtime
+
+If push notifications fail temporarily, updated status will appear when you open the app next.
+
+🔹 Step 7: Provide Feedback
+After a report is marked “Resolved”, you’ll be prompted to:
+
+Rate the service (1 to 5 stars)
+Add a short comment about your experience
+
+This feedback helps improve the system and government responsiveness.
+
+🔹 Step 8: Log Out
+At any time, click “Logout” to securely end your session.
+
+🛠️ 2. Admin Guide – For Government Employees
+
+🔹 Step 1: Access the Admin Dashboard
+Go to the admin login page
+Enter your email and password
+Select your department
+Click “Login”
+
+🔹 Step 2: View Assigned Reports
+On the dashboard:
+
+All reports assigned to your department are listed
+Sort by:
+Date
+Urgency
+Type
+Status
+
+🔹 Step 3: Manage Reports
+For each report:
+
+Click to view full details
+Update the status (Pending → In Progress → Resolved)
+Add comments or request clarification from the user
+Assign the report to another department if needed
+
+🔹 Step 4: Export Data
+Administrators can export reports and user feedback:
+
+Click “Export”
+Choose format: CSV or PDF
+Download for record-keeping or internal review
+
+🔹 Step 5: Log Out
+Click “Logout” to securely end your admin session.
+      `;
+    }
+
+    // On page load
+    applyLanguage();
+  </script>
+</body>
+</html>

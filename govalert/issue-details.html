@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issue Details - Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --resolved-color: #4CAF50;
+      --in-progress-color: #FFA726;
+      --text-color: #000;
+      --card-bg: white;
+      --footer-bg: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      color: var(--text-color);
+      direction: ltr;
+      text-align: left;
+      transition: direction 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
+    }
+
+    header select {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      min-width: 160px;
+    }
+
+    main.issue-details {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px 20px 80px;
+    }
+
+    .issue-card {
+      background-color: var(--card-bg);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .issue-card p {
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: white;
+      margin-top: 5px;
+    }
+
+    .status-resolved {
+      background-color: var(--resolved-color);
+    }
+
+    .status-in-progress {
+      background-color: var(--in-progress-color);
+    }
+
+    button#fixIssueBtn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    button#fixIssueBtn:hover {
+      background-color: #267bc9;
+    }
+
+    /* Reply Section */
+    .reply-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .reply-section h2 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: var(--text-color);
+    }
+
+    #replyText {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    #sendReplyBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #sendReplyBtn:hover {
+      background-color: #267bc9;
+    }
+
+    /* Footer Navigation */
+    footer.nav-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--footer-bg);
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] header {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    [dir="rtl"] header select {
+      margin-right: 10px;
+      margin-left: 0;
+    }
+
+    [dir="rtl"] .reply-section {
+      text-align: right;
+    }
+
+    [dir="rtl"] #replyText {
+      text-align: right;
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <!-- Header -->
+  <header>
+    <select id="statusDropdown">
+      <option value="">Change Status</option>
+      <option value="pending">Pending</option>
+      <option value="inProgress">In Progress</option>
+      <option value="resolved">Resolved</option>
+    </select>
+
+    <select id="departmentDropdown">
+      <option value="">Assign Department</option>
+      <option value="electrical">Electrical Maintenance</option>
+      <option value="roads">Roads Department</option>
+    </select>
+  </header>
+
+  <!-- Main Content -->
+  <main class="issue-details">
+    <div class="issue-card">
+      <p><strong id="labelIssueId">Issue ID:</strong> <span id="issueId">ISS-2025-001</span></p>
+      <p><strong id="labelCategory">Category:</strong> <span id="category">Streetlight Malfunction</span></p>
+      <p><strong id="labelDescription">Description:</strong> <span id="description">Broken streetlight at corner of Al-Rashid Street.</span></p>
+      <p><strong id="labelSubmissionTime">Submission Time:</strong> <span id="submissionTime">2025-04-05 10:30 AM</span></p>
+      <p><strong id="labelLocation">Location:</strong> <span id="location">Al-Rashid Street, Amman</span></p>
+      <p><strong id="labelReporter">Reporter:</strong> <span id="reporter">Ali Ahmad</span></p>
+      <p><strong id="labelStatus">Status:</strong> <span id="status" class="status-badge status-in-progress">In Progress</span></p>
+      
+      <button id="fixIssueBtn">Mark as Fixed</button>
+    </div>
+
+    <!-- Reply Section -->
+    <div class="reply-section">
+      <h2 id="replySectionTitle">Reply to Citizen</h2>
+      <textarea id="replyText" placeholder=""></textarea>
+      <button id="sendReplyBtn" style="margin-top: 10px;">Send Reply</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="nav-footer">
+    <a href="issue-details.html" id="footerReport">📄 Report</a>
+    <a href="reports-table.html" id="footerHome">🏠 Home</a>
+    <a href="emp_profile.html" id="footerProfile">👤 My Profile</a>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function applyLang() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      // Labels
+      document.getElementById("labelIssueId").textContent = isArabic ? "رقم التقرير:" : "Issue ID:";
+      document.getElementById("labelCategory").textContent = isArabic ? "الفئة:" : "Category:";
+      document.getElementById("labelDescription").textContent = isArabic ? "الوصف:" : "Description:";
+      document.getElementById("labelSubmissionTime").textContent = isArabic ? "وقت الإرسال:" : "Submission Time:";
+      document.getElementById("labelLocation").textContent = isArabic ? "الموقع:" : "Location:";
+      document.getElementById("labelReporter").textContent = isArabic ? "المُبَلّغ:" : "Reporter:";
+      document.getElementById("labelStatus").textContent = isArabic ? "الحالة:" : "Status:";
+      document.getElementById("fixIssueBtn").textContent = isArabic ? "ضع علامة على أنه تم الحله" : "Mark as Fixed";
+      document.getElementById("replySectionTitle").textContent = isArabic ? "رد على المواطن" : "Reply to Citizen";
+      document.getElementById("replyText").placeholder = isArabic ? "اكتب ردك هنا..." : "Type your reply here...";
+      document.getElementById("sendReplyBtn").textContent = isArabic ? "إرسال الرد" : "Send Reply";
+      document.getElementById("footerReport").textContent = isArabic ? "📄 التقرير" : "📄 Report";
+      document.getElementById("footerHome").textContent = isArabic ? "🏠 الصفحة الرئيسية" : "🏠 Home";
+      document.getElementById("footerProfile").textContent = isArabic ? "👤 ملفي الشخصي" : "👤 My Profile";
+
+      // Dropdown Options
+      document.querySelector('#statusDropdown option[value=""]').textContent = isArabic ? "تغيير الحالة" : "Change Status";
+      document.querySelector('#statusDropdown option[value="pending"]').textContent = isArabic ? "قيد الانتظار" : "Pending";
+      document.querySelector('#statusDropdown option[value="inProgress"]').textContent = isArabic ? "جاري العمل" : "In Progress";
+      document.querySelector('#statusDropdown option[value="resolved"]').textContent = isArabic ? "تم الحل" : "Resolved";
+
+      document.querySelector('#departmentDropdown option[value=""]').textContent = isArabic ? "تعيين القسم" : "Assign Department";
+      document.querySelector('#departmentDropdown option[value="electrical"]').textContent = isArabic ? "صيانة الكهرباء" : "Electrical Maintenance";
+      document.querySelector('#departmentDropdown option[value="roads"]').textContent = isArabic ? "قسم الطرق" : "Roads Department";
+    }
+
+    // Apply language settings on page load
+    applyLang();
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GovAlert Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f2fbfc; 
+      --primary-color: #318ce7;
+      --text-color: #000;
+      --footer-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      direction: ltr;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: direction 0.3s ease;
+    }
+
+    .top-section {
+      width: 100%;
+      min-height: 500px;
+      background-image: url('amman1.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .top-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .top-section h1,
+    .top-section p {
+      z-index: 2;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .top-section h1 {
+      font-size: 2.5rem;
+    }
+
+    .top-section p {
+      font-size: 1.3rem;
+    }
+
+    .language-toggle {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+      z-index: 3;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    main p.feedback {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #333;
+      max-width: 600px;
+    }
+
+    button.signup-btn {
+      padding: 14px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(49, 140, 231, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    button.signup-btn:hover {
+      background-color: #267bc9;
+    }
+
+    footer {
+      width: 100%;
+      background-color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    a.how-to-link {
+      display: block;
+      margin-top: 20px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    a.how-to-link:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] .language-toggle {
+      right: auto;
+      left: 30px;
+    }
+
+    [dir="rtl"] a.how-to-link {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-section">
+    <button class="language-toggle" onclick="toggleLang()">🌐</button>
+    <h1 id="headerText">Send Feedback</h1>
+    <p id="slogan">We value your opinion!</p>
+  </div>
+
+  <main>
+    <p class="feedback" id="feedbackPrompt">
+      Please let us know your suggestions or problems you are facing.
+    </p>
+    <button class="signup-btn" onclick="window.location.href='http://localhost:3000/login.html'" id="submitBtn">
+      Report an Issue
+    </button>
+    <br /><br /><br><br><br><br><br><br><br>
+   
+  </main>
+
+  <footer>
+    <p id="footerText">&copy; 2025 GovAlert. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function toggleLang() {
+      isArabic = !isArabic;
+      localStorage.setItem('isArabic', isArabic);
+      applyLanguage();
+    }
+
+    function applyLanguage() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("headerText").textContent = isArabic ? "إرسال الملاحظات" : "Send Feedback";
+      document.getElementById("slogan").textContent = isArabic ? "نحن نُقدّر رأيك!" : "We value your opinion!";
+      document.getElementById("feedbackPrompt").textContent = isArabic
+        ? "يرجى إخبارنا باقتراحاتك أو المشاكل التي تواجهها."
+        : "Please let us know your suggestions or problems you are facing.";
+      document.getElementById("submitBtn").textContent = isArabic ? "بلغ عن مشكلة" : "Report an Issue";
+      document.getElementById("footerText").textContent = isArabic
+        ? "© 2025 تنبيه الحكومة. جميع الحقوق محفوظة."
+        : "© 2025 GovAlert. All rights reserved.";
+    }
+
+    applyLanguage();
+  </script>
+</body>
+</html>

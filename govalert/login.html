@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Gov Alert</title>
+  <style>
+    body {
+      background-color: #F2FBFC;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: direction 0.3s;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 12px;
+      color: grey;
+      margin-bottom: 20px;
+    }
+
+    button.login-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #318CE7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .divider {
+      margin: 20px 0;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+    }
+
+    .divider span {
+      position: absolute;
+      top: -10px;
+      background: white;
+      padding: 0 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: grey;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .social-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .bottom-text {
+      margin-top: 20px;
+      font-size: 12px;
+      color: grey;
+    }
+
+    .bottom-text a {
+      color: #333;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2 id="loginTitle">Log in</h2>
+
+    <form id="loginForm">
+      <input type="email" name="email" id="emailField" placeholder="Email address">
+      <input type="password" name="password" id="passwordField" placeholder="Password">
+      <div class="forgot"><a href="forgot-password.html" id="forgotLink">Forgot password?</a></div>
+      <button type="submit" class="login-btn" id="loginBtn">Log in</button>
+    </form>
+
+    <div class="divider"><span id="dividerText">Or Login with</span></div>
+    <!-- Social Buttons -->
+<div class="social-buttons">
+  <button onclick="window.open('https://www.facebook.com/login.php',  '_blank')">
+    <img src="facebook.png" alt="Facebook" width="20">
+  </button>
+  <button onclick="window.open('https://accounts.google.com/AccountChooser',  '_blank')">
+    <img src="google.png" alt="Google" width="20">
+  </button>
+  <button onclick="window.open('https://appleid.apple.com/',  '_blank')">
+    <img src="apple.png" alt="Apple" width="20">
+  </button>
+</div>
+    <div class="bottom-text">
+      <span id="signupText">Don’t have an account?</span> <a href="signup.html" id="signupLink">Sign up</a>
+    </div>
+  </div>
+
+  <script>
+    function applyLanguage(isArabic) {
+      document.body.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("loginTitle").textContent = isArabic ? "تسجيل الدخول" : "Log in";
+      document.getElementById("emailField").placeholder = isArabic ? "عنوان البريد الإلكتروني" : "Email address";
+      document.getElementById("passwordField").placeholder = isArabic ? "كلمة المرور" : "Password";
+      document.getElementById("forgotLink").textContent = isArabic ? "نسيت كلمة المرور؟" : "Forgot password?";
+      document.getElementById("loginBtn").textContent = isArabic ? "تسجيل الدخول" : "Log in";
+      document.getElementById("dividerText").textContent = isArabic ? "أو سجل الدخول باستخدام" : "Or Login with";
+      document.getElementById("signupText").textContent = isArabic ? "ليس لديك حساب؟" : "Don’t have an account?";
+      document.getElementById("signupLink").textContent = isArabic ? "إنشاء حساب" : "Sign up";
+    }
+
+    function toggleLang() {
+      const currentLang = localStorage.getItem('isArabic') === 'true';
+      const newLang = !currentLang;
+      localStorage.setItem('isArabic', newLang);
+      applyLanguage(newLang);
+    }
+
+    // Apply on page load
+    const isArabicStored = localStorage.getItem('isArabic') === 'true';
+    applyLanguage(isArabicStored);
+
+
+
+  document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      window.location.href = result.redirect;
+    } else {
+      alert(result.error || 'Login failed');
+    }
+  });
+
+  </script>
+</body>
+</html>

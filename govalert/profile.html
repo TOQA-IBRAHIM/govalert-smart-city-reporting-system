@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --card-bg: white;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      color: var(--text-color);
+      direction: ltr;
+      transition: direction 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .profile-details h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .profile-details p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item span {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .stat-item p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    button.edit-profile-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 40px;
+      transition: background 0.3s ease;
+    }
+
+    button.edit-profile-btn:hover {
+      background-color: #267bc9;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 40px;
+    }
+
+    .menu-btn {
+      background-color: var(--card-bg);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background-color: #f0f8ff;
+    }
+
+    .menu-btn a {
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    footer.nav-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 15px 20px;
+      text-align: center;
+      box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+      color: #666;
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] .profile-details {
+      text-align: right;
+    }
+
+    [dir="rtl"] .stats {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .menu-btn,
+    [dir="rtl"] .menu-btn a {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <img src="user.jpg" alt="User Avatar" class="avatar">
+    <div class="profile-details">
+      <h2 id="username">Ali Ahmad</h2>
+      <p id="email">ali@example.com</p>
+      <p id="phone">96273333333</p>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat-item">
+      <span id="solvedIssues">1</span>
+      <p id="labelSolved">Solved</p>
+    </div>
+    <div class="stat-item">
+      <span id="totalIssues">2</span>
+      <p id="labelTotal">Total Issues</p>
+    </div>
+  </section>
+
+  <!-- Edit Profile Button -->
+  <button class="edit-profile-btn" id="editProfileBtn"><a href="edit-profile.html">Edit Profile</a></button>
+
+  <!-- Menu Buttons -->
+  <div class="menu-container">
+    <button class="menu-btn"><a href="report-form.html"><i class="fas fa-flag"></i> <span id="menuReport">Report a Problem</span></a></button>
+    <button class="menu-btn"><a href="signup.html"><i class="fas fa-user-plus"></i> <span id="menuAddAccount">Add Account</span></a></button>
+    <button class="menu-btn"><a href="login.html"><i class="fas fa-sign-out-alt"></i> <span id="menuLogout">Log Out</span></a></button>
+  </div>
+
+  <!-- Footer Navigation -->
+  <footer class="nav-footer">
+    <a href="dashboard.html" id="footerReports">📄 My Reports</a>
+    <a href="report-form.html" id="footerAdd">➕ Add Report</a>
+    <a href="profile.html" id="footerProfile">👤 My Profile</a>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    async function fetchUserData() {
+      try {
+        // Fetch user data
+        const userResponse = await fetch('/api/current-user', {
+          method: 'GET',
+          credentials: 'include' // Include cookies for session
+        });
+        const userData = await userResponse.json();
+        if (userData.error) {
+          alert(userData.error);
+          window.location.href = 'index.html'; // Redirect to login if not authenticated
+          return;
+        }
+
+        // Fetch report counts
+        const totalReportsResponse = await fetch(`/api/reports/count/${userData.id}`);
+        const totalReportsData = await totalReportsResponse.json();
+        const solvedReportsResponse = await fetch(`/api/reports/solved/${userData.id}`);
+        const solvedReportsData = await solvedReportsResponse.json();
+
+        // Store user data for use in applyLang
+        window.userData = {
+          name: userData.name || 'Unknown User',
+          email: userData.email || 'No email',
+          phone: userData.phone_num || 'No phone',
+          totalIssues: totalReportsData.total_reports || 0,
+          solvedIssues: solvedReportsData.solved_reports || 0
+        };
+
+        applyLang();
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        alert('Error loading profile data.');
+        window.location.href = 'index.html';
+      }
+    }
+
+    function applyLang() {
+      document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+
+      // Use fetched user data if available, otherwise fallback
+      const user = window.userData || {
+        name: 'Ali Ahmad',
+        email: 'ali@example.com',
+        phone: '+962 733 333 333',
+        totalIssues: 41,
+        solvedIssues: 23
+      };
+
+      document.getElementById('username').textContent = isArabic ? user.name : user.name;
+      document.getElementById('email').textContent = user.email;
+      document.getElementById('phone').textContent = user.phone;
+      document.getElementById('solvedIssues').textContent = user.solvedIssues;
+      document.getElementById('totalIssues').textContent = user.totalIssues;
+
+      document.getElementById('labelSolved').textContent = isArabic ? 'تم الحل' : 'Solved';
+      document.getElementById('labelTotal').textContent = isArabic ? 'إجمالي المشكلات' : 'Total Issues';
+      document.getElementById('editProfileBtn').textContent = isArabic ? 'تعديل الملف الشخصي' : 'Edit Profile';
+      document.getElementById('menuReport').textContent = isArabic ? 'الإبلاغ عن مشكلة' : 'Report a Problem';
+      document.getElementById('menuAddAccount').textContent = isArabic ? 'إنشاء حساب' : 'Add Account';
+      document.getElementById('menuLogout').textContent = isArabic ? 'تسجيل الخروج' : 'Log Out';
+      document.getElementById('footerReports').innerHTML = isArabic ? '📄 تقاريري' : '📄 My Reports';
+      document.getElementById('footerAdd').innerHTML = isArabic ? '➕ إضافة تقرير' : '➕ Add Report';
+      document.getElementById('footerProfile').innerHTML = isArabic ? '👤 ملفي الشخصي' : '👤 My Profile';
+    }
+
+    // Fetch user data on page load
+    //fetchUserData();
+  </script>
+</body>
+</html>

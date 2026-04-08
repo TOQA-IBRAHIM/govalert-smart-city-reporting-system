@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Account - Gov Alert</title>
+  <style>
+    body {
+      background-color: #F2FBFC;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: direction 0.3s;
+    }
+
+    .signup-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    .signup-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button.signup-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #318CE7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .terms-text {
+      margin-top: 20px;
+      font-size: 12px;
+      color: grey;
+      text-align: center;
+    }
+
+    .terms-text a {
+      color: #333;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2 id="signupTitle">Create account</h2>
+
+    <form>
+      <input type="text" id="nameField" placeholder="Name">
+      <input type="email" id="emailField" placeholder="Email address">
+      <div class="password-container">
+        <input type="password" id="passwordField" placeholder="Password">
+        <span class="password-toggle" onclick="togglePassword()">👁️</span>
+      </div>
+      <input type="tel" id="phoneField" placeholder="Phone number">
+      <button type="submit" class="signup-btn" id="signupBtn">Create account</button>
+    </form>
+
+    <div class="terms-text">
+      <span id="termsText">By creating an account or signing you agree to our</span> <a href="terms.html" id="termsLink">Terms and Conditions</a>
+    </div>
+  </div>
+
+  <script>
+  let isArabic = localStorage.getItem('isArabic') === 'true';
+
+  function togglePassword() {
+    const passwordField = document.getElementById("passwordField");
+    const toggleIcon = document.querySelector(".password-toggle");
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleIcon.textContent = "🙈";
+    } else {
+      passwordField.type = "password";
+      toggleIcon.textContent = "👁️";
+    }
+  }
+
+  function toggleLang() {
+    isArabic = !isArabic;
+    localStorage.setItem('isArabic', isArabic);
+    applyLang();
+  }
+
+  function applyLang() {
+    document.body.dir = isArabic ? "rtl" : "ltr";
+
+    const toggleIcon = document.querySelector(".password-toggle");
+    if (isArabic) {
+      toggleIcon.style.right = "auto";
+      toggleIcon.style.left = "10px";
+    } else {
+      toggleIcon.style.left = "auto";
+      toggleIcon.style.right = "10px";
+    }
+
+    document.getElementById("signupTitle").textContent = isArabic ? "إنشاء حساب" : "Create account";
+    document.getElementById("nameField").placeholder = isArabic ? "الاسم" : "Name";
+    document.getElementById("emailField").placeholder = isArabic ? "عنوان البريد الإلكتروني" : "Email address";
+    document.getElementById("passwordField").placeholder = isArabic ? "كلمة المرور" : "Password";
+    document.getElementById("phoneField").placeholder = isArabic ? "رقم الهاتف" : "Phone number";
+    document.getElementById("signupBtn").textContent = isArabic ? "إنشاء حساب" : "Create account";
+    document.getElementById("termsText").textContent = isArabic
+      ? "من خلال إنشاء حساب أو التسجيل، فإنك توافق على"
+      : "By creating an account or signing you agree to our";
+    document.getElementById("termsLink").textContent = isArabic ? "الشروط والأحكام" : "Terms and Conditions";
+  }
+
+  // Apply language on page load
+  applyLang();
+</script>
+
+</body>
+</html>

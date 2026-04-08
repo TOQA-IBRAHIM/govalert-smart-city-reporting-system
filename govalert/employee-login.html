@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Login - Gov Alert</title>
+  <style>
+    body {
+      background-color: #F2FBFC;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: direction 0.3s;
+    }
+
+    .employee-login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    .employee-login-container h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 12px;
+      color: grey;
+      margin-bottom: 20px;
+    }
+
+    button.login-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #318CE7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .divider {
+      margin: 20px 0;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+    }
+
+    .divider span {
+      position: absolute;
+      top: -10px;
+      background: white;
+      padding: 0 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: grey;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .social-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .bottom-text {
+      margin-top: 20px;
+      font-size: 12px;
+      color: grey;
+    }
+
+    .bottom-text a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .checkbox-container {
+      text-align: left;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="employee-login-container">
+    <h2 id="loginTitle">Employee Login</h2>
+
+    <form id="employeeLoginForm">
+      <input type="email" id="emailField" name="email" placeholder="Email address" required>
+      <input type="password" id="passwordField" name="password" placeholder="Password" required>
+      <div class="forgot"><a href="forgot-password.html" id="forgotLink" onclick="localStorage.setItem('referringPage', 'employee-login.html')">Forgot password?</a></div>
+      <button type="submit" class="login-btn" id="loginBtn" ><a href="reports-table.html">Log in</button></a>
+    </form>
+  </div>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function toggleLang() {
+      isArabic = !isArabic;
+      localStorage.setItem('isArabic', isArabic);
+      document.body.dir = isArabic ? "rtl" : "ltr";
+
+      // Update text content based on language
+      document.getElementById("loginTitle").textContent = isArabic ? "تسجيل دخول الموظف" : "Employee Login";
+      document.getElementById("emailField").placeholder = isArabic ? "عنوان البريد الإلكتروني" : "Email address";
+      document.getElementById("passwordField").placeholder = isArabic ? "كلمة المرور" : "Password";
+      document.getElementById("forgotLink").textContent = isArabic ? "نسيت كلمة المرور؟" : "Forgot password?";
+      document.getElementById("loginBtn").textContent = isArabic ? "تسجيل الدخول" : "Log in";
+    }
+
+    // Apply language on load
+    document.addEventListener("DOMContentLoaded", () => {
+      if (isArabic) toggleLang();
+    });
+
+    // Handle form submission
+    /*document.getElementById('employeeLoginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch('/employee-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          window.location.href = result.redirect;
+        } else {
+          alert(result.error || 'Employee login failed');
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        alert('Error connecting to server: ' + error.message);
+      }
+
+    } );*/
+
+    // Hardcoded valid credentials (plaintext for demo)
+    const validEmail = "ahmad@example.com";
+    const validPassword = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"; 
+
+    // Handle form submission
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // prevent page reload
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email === validEmail && password === validPassword) {
+        document.getElementById("message").textContent = "Login successful!";
+        document.getElementById("message").style.color = "green";
+        } else {
+        document.getElementById("message").textContent = "Invalid email or password.";
+        document.getElementById("message").style.color = "red";
+      }
+    });
+ 
+  </script>
+</body>
+</html>

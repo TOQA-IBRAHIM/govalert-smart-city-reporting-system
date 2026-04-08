@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports Table - Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --card-bg: white;
+      --footer-bg: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      color: var(--text-color);
+      direction: ltr;
+      text-align: left;
+      transition: direction 0.3s ease;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--primary-color);
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: white;
+      margin: 0;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #f0f8ff;
+    }
+
+    tbody a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    tbody a:hover {
+      text-decoration: underline;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: white;
+    }
+
+    .status-resolved {
+      background-color: #4CAF50;
+    }
+
+    .status-in-progress {
+      background-color: #FFA726;
+    }
+
+    .status-pending {
+      background-color: #666;
+    }
+
+    /* Footer Navigation */
+    footer.nav-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--footer-bg);
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] th,
+    [dir="rtl"] td {
+      text-align: right;
+    }
+
+    [dir="rtl"] thead th {
+      text-align: right;
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <!-- Header -->
+  <header>
+    <h1 id="tableTitle">Reports Overview</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <table id="reportsTable">
+      <thead>
+        <tr>
+          <th id="colCategory">Issue Category</th>
+          <th id="colDescription">Description</th>
+          <th id="colTime">Submission Time</th>
+          <th id="colLocation">Location</th>
+          <th id="colReporter">Reporter</th>
+          <th id="colStatus">Status</th>
+        </tr>
+      </thead>
+      <tbody id="reportsTableBody">
+        <tr>
+          <td>Water Leak</td>
+          <td>Leak detected near 5th Avenue and Main Street.</td>
+          <td><a href="issue-details.html">2025-06-01 14:30</a></td>
+          <td>Zone 3, Sector B</td>
+          <td>Ali Ahmed</td>
+          <td><span class="status-badge status-in-progress">In Progress</span></td>
+        </tr>
+        <tr>
+          <td>Electricity Outage</td>
+          <td>Power outage reported in Block 12.</td>
+          <td>2025-06-02 09:15</td>
+          <td>Block 12</td>
+          <td>Fatima Noor</td>
+          <td><span class="status-badge status-resolved">Resolved</span></td>
+        </tr>
+        <tr>
+          <td>Road Damage</td>
+          <td>Potholes forming after heavy rain.</td>
+          <td>2025-06-03 08:45</td>
+          <td>Main Boulevard</td>
+          <td>Omar Said</td>
+          <td><span class="status-badge status-pending">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Footer -->
+  <footer class="nav-footer">
+    <a href="reports-table.html" id="footerHome">🏠 Home</a>
+    <a href="emp_profile.html" id="footerProfile">👤 My Profile</a>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function applyLang() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      // Table Headers
+      document.getElementById("tableTitle").textContent = isArabic ? "نظرة عامة على التقارير" : "Reports Overview";
+      document.getElementById("colCategory").textContent = isArabic ? "الفئة" : "Issue Category";
+      document.getElementById("colDescription").textContent = isArabic ? "الوصف" : "Description";
+      document.getElementById("colTime").textContent = isArabic ? "وقت الإرسال" : "Submission Time";
+      document.getElementById("colLocation").textContent = isArabic ? "الموقع" : "Location";
+      document.getElementById("colReporter").textContent = isArabic ? "المُبَلّغ" : "Reporter";
+      document.getElementById("colStatus").textContent = isArabic ? "الحالة" : "Status";
+
+      // Footer
+      document.getElementById("footerHome").textContent = isArabic ? "🏠 الصفحة الرئيسية" : "🏠 Home";
+      document.getElementById("footerProfile").textContent = isArabic ? "👤 ملفي الشخصي" : "👤 My Profile";
+
+      // Update Status Labels
+      const statuses = document.querySelectorAll(".status-badge");
+      statuses.forEach(status => {
+        if (status.textContent.trim() === "Resolved" && isArabic) status.textContent = "تم الحل";
+        else if (status.textContent.trim() === "In Progress" && isArabic) status.textContent = "جاري العمل";
+        else if (status.textContent.trim() === "Pending" && isArabic) status.textContent = "قيد الانتظار";
+        else if (status.textContent.trim() === "تم الحل") status.textContent = "Resolved";
+        else if (status.textContent.trim() === "جاري العمل") status.textContent = "In Progress";
+        else if (status.textContent.trim() === "قيد الانتظار") status.textContent = "Pending";
+      });
+    }
+
+    // Apply language settings on page load
+    applyLang();
+  </script>
+</body>
+</html>

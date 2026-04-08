@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report an Issue - Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --card-bg: white;
+      --input-border: #ccc;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      direction: ltr;
+      transition: direction 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    header img {
+      height: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    form#reportForm {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    form#reportForm label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    form#reportForm select,
+    form#reportForm textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--input-border);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-color);
+    }
+
+    form#reportForm textarea {
+      resize: vertical;
+    }
+
+    .file-upload-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #uploadButton {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #uploadButton img {
+      width: 20px;
+      height: 20px;
+    }
+
+    #uploadedFiles {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    #getLocation {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #getLocation img {
+      width: 18px;
+      height: 18px;
+    }
+
+    button#submitButton {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button#submitButton:hover {
+      background-color: #267bc9;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] header {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] header img {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    [dir="rtl"] .file-upload-container {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] #uploadButton {
+      margin-left: 10px;
+    }
+
+    [dir="rtl"] #getLocation {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <header>
+    <a href="dashboard.html">
+      <img src="back.jpg" alt="Back" />
+    </a>
+    <h1 id="formTitle">Report an Issue</h1>
+  </header>
+
+  <form id="reportForm">
+    <!-- Select Category -->
+    <label for="category" id="labelCategory">Select Category *</label>
+    <select id="category" name="category" required>
+      <option value="">Choose a category</option>
+      <option value="road_potholes">Road Potholes</option>
+      <option value="leaky_water">Leaky Water Issue</option>
+      <option value="streetlight_malfunction">Streetlight Malfunction</option>
+      <option value="other">Other</option>
+    </select>
+
+    <!-- Describe the issue -->
+    <label for="description" id="labelDescription">Describe the issue</label>
+    <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+
+    <!-- Attach Photo or Video -->
+    <label for="fileUpload" id="labelAttach">Attach Photo or Video</label>
+    <div class="file-upload-container">
+      <button type="button" id="uploadButton">
+        <img src="plus.jpg" alt="Add File" />
+      </button>
+      <input type="file" id="fileUpload" name="fileUpload" style="display: none;" accept="image/*,video/*" />
+      <div id="uploadedFiles" id="uploadedFilesLabel"></div>
+    </div>
+
+    <!-- Location -->
+    <label for="location" id="labelLocation">Location</label>
+    <button type="button" id="getLocation">
+      <img src="location.jpg" alt="Get Location" />
+      <span id="btnLocationText">Get Current Location</span>
+    </button>
+    <p id="locationDisplay" style="margin-top: 10px;"></p>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submitButton">Submit</button>
+  </form>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function applyLang() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("formTitle").textContent = isArabic ? "الإبلاغ عن مشكلة" : "Report an Issue";
+      document.getElementById("labelCategory").textContent = isArabic ? "اختر الفئة *" : "Select Category *";
+      document.getElementById("labelDescription").textContent = isArabic ? "وصف المشكلة" : "Describe the issue";
+      document.getElementById("labelAttach").textContent = isArabic ? "إرفاق صورة أو فيديو" : "Attach Photo or Video";
+      document.getElementById("labelLocation").textContent = isArabic ? "الموقع" : "Location";
+      document.getElementById("btnLocationText").textContent = isArabic ? "الحصول على الموقع الحالي" : "Get Current Location";
+      document.getElementById("submitButton").textContent = isArabic ? "إرسال" : "Submit";
+    }
+
+    // Apply language settings on page load
+    applyLang();
+
+    // Trigger file upload dialog
+    document.getElementById("uploadButton").addEventListener("click", () => {
+      document.getElementById("fileUpload").click();
+    });
+
+    // Show selected file name
+    document.getElementById("fileUpload").addEventListener("change", function () {
+      const fileName = this.files[0] ? this.files[0].name : "";
+      document.getElementById("uploadedFiles").textContent = fileName || "";
+    });
+
+    // Get current location
+    document.getElementById("getLocation").addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude.toFixed(6);
+            const lng = position.coords.longitude.toFixed(6);
+            const locationText = isArabic
+              ? `الموقع: العرض ${lat}، الطول ${lng}`
+              : `Location: Latitude ${lat}, Longitude ${lng}`;
+            document.getElementById("locationDisplay").textContent = locationText;
+          },
+          (error) => {
+            const errorText = isArabic
+              ? "تعذر الحصول على الموقع"
+              : "Failed to get location";
+            document.getElementById("locationDisplay").textContent = errorText;
+            console.error(error);
+          }
+        );
+      } else {
+        const noGeoText = isArabic
+          ? "متصفحك لا يدعم تحديد الموقع"
+          : "Geolocation not supported by this browser";
+        document.getElementById("locationDisplay").textContent = noGeoText;
+      }
+    });
+  </script>
+</body>
+</html>

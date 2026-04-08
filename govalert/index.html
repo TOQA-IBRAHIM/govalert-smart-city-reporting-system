@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gov Alert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #F2FBFC; 
+      --primary-color: #318CE7;
+      --text-color: #000;
+      --footer-bg: #ffffff;
+      --footer-link-color: #318CE7;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 15px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin-left: 10px;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 60px;
+      text-align: left;
+    }
+
+    .section img {
+      width: 260px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .content-box {
+      flex: 1;
+      min-width: 280px;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .content-box h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .content-box ul {
+      text-align: left;
+      list-style: disc inside;
+      padding-left: 10px;
+    }
+
+    .content-box li {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    button.language-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    button.report-btn {
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 2px 6px rgba(49, 140, 231, 0.3);
+    }
+
+    button.report-btn:hover {
+      background-color: #267bc9;
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-color);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+    }
+
+    footer a {
+      color: var(--footer-link-color);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RTL Styles */
+    [dir="rtl"] .section {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    [dir="rtl"] .content-box {
+      text-align: right;
+    }
+
+    [dir="rtl"] .content-box ul {
+      text-align: right;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+
+    [dir="rtl"] header h1 {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+
+    [dir="rtl"] .logo-container {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .logo-container img {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    @media (max-width: 768px) {
+      .section[dir="rtl"] {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      [dir="rtl"] .content-box {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Gov Alert Logo">
+      <h1 id="title">Gov Alert</h1>
+    </div>
+    <button class="language-toggle" onclick="toggleLang()">🌐</button>
+  </header>
+
+  <main>
+    <div class="section">
+      <img src="people1.jpg" alt="People 1">
+      <div class="content-box">
+        <h2 id="heading1">Empowering Digital Governance<br>Enhancing Citizen Engagement through Feedback</h2>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="content-box">
+        <h2 id="heading2">Welcome to the Future of Public Service!</h2>
+        <ul id="featuresList">
+          <li>Report local issues (road damage, power outage, etc.)</li>
+          <li>Submit suggestions to improve government services</li>
+          <li>Track resolution status transparently</li>
+        </ul>
+      </div>
+      <img src="people2.jpg" alt="People 2">
+    </div>
+
+    <div class="section">
+      <img src="people3.jpg" alt="People 3">
+      <div class="content-box">
+        <p id="callToAction" style="font-size: 18px;"><strong>Let’s make every voice count.</strong></p>
+        <button class="report-btn" onclick="window.location.href='feedback.html'" id="reportBtn">Report an Issue</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>
+      <a href="summary.html" target="_blank">How to Use</a> |
+      &copy; 2025 Gov Alert. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    let isArabic = localStorage.getItem('isArabic') === 'true';
+
+    function toggleLang() {
+      isArabic = !isArabic;
+      localStorage.setItem('isArabic', isArabic);
+      applyLanguage();
+    }
+
+    function applyLanguage() {
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+      document.getElementById("title").textContent = isArabic ? "تنبيه الحكومة" : "Gov Alert";
+      document.getElementById("heading1").innerHTML = isArabic
+        ? "تمكين الحوكمة الرقمية<br>تعزيز مشاركة المواطنين من خلال الملاحظات"
+        : "Empowering Digital Governance<br>Enhancing Citizen Engagement through Feedback";
+
+      document.getElementById("heading2").textContent = isArabic
+        ? "مرحبًا بك في مستقبل الخدمة العامة!"
+        : "Welcome to the Future of Public Service!";
+
+      document.getElementById("featuresList").innerHTML = isArabic
+        ? `<li>الإبلاغ عن المشكلات المحلية (تلف الطريق، انقطاع الكهرباء، إلخ)</li>
+           <li>تقديم اقتراحات لتحسين الخدمات الحكومية</li>
+           <li>تتبع حالة الحل بشفافية</li>`
+        : `<li>Report local issues (road damage, power outage, etc.)</li>
+           <li>Submit suggestions to improve government services</li>
+           <li>Track resolution status transparently</li>`;
+
+      document.getElementById("callToAction").innerHTML = isArabic
+        ? "<strong>لنجعل كل صوت يُحسب.</strong>"
+        : "<strong>Let’s make every voice count.</strong>";
+
+      document.getElementById("reportBtn").textContent = isArabic
+        ? "الإبلاغ عن مشكلة"
+        : "Report an Issue";
+    }
+
+    // On page load
+    applyLanguage();
+  </script>
+</body>
+</html>
